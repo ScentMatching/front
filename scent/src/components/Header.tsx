@@ -1,19 +1,26 @@
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const header = () => {
-    return (
-        <div>
-            <div className = "flex p-5 justify-between bg-smColor w-full h-[100px] border-solid border-b-2 border-smBorderColor">
-                <div className='flex items-center justify-center'>
-                    (로고) Scent Matching
-                </div>
-                <div className='flex gap-6 items-center justify-center'>
-                    <div>로그인</div>
-                    <div>회원가입</div>
-                </div>
-            </div>
+  return (
+    <div>
+      <div className="flex h-[100px] w-full justify-between border-b-2 border-solid border-smBorderColor bg-smColor p-5">
+        <Link href="/" className="flex items-center">
+          <div className="flex items-center justify-center">
+            (로고) Scent Matching
+          </div>
+        </Link>
+        <div className="flex items-center justify-center gap-6">
+          <Link href="/login">
+            <div>로그인</div>
+          </Link>
+          <Link href="/signin">
+            <div>회원가입</div>
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default header;

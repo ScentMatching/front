@@ -13,8 +13,9 @@ const config: Config = {
     },
     extend: {
       colors: {
-      smColor : "#F6F6DB",
-      smBorderColor : "#d3d396",
+        smColor: "#F6F6DB",
+        smBorderColor: "#d3d396",
+        smButtonColor: "#F3DAB3",
       },
       fontFamily: {
         sans: ["Pretendard", "ui-sans-serif", "system-ui"],
