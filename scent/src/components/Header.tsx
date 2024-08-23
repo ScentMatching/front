@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import scentMatching from "../../public/icon/scentMatching.png";
 
 const header = () => {
   return (
@@ -7,7 +9,12 @@ const header = () => {
       <div className="flex h-[100px] w-full justify-between border-b-2 border-solid border-smBorderColor bg-smColor p-5">
         <Link href="/" className="flex items-center">
           <div className="flex items-center justify-center">
-            (로고) Scent Matching
+            <Image
+              src={scentMatching}
+              alt="sm로고"
+              width={100}
+              height={100}
+            ></Image>
           </div>
         </Link>
         <div className="flex items-center justify-center gap-6">
