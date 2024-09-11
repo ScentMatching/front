@@ -16,10 +16,10 @@ const home = () => {
           <Button>테스트하러가기</Button>
         </Link>
       </div>
-      <div className="mb-32 mt-32 grid h-[360px] w-full grid-cols-4 items-center justify-center justify-items-center gap-2 border-solid border-smBorderColor p-4 shadow-md">
+      <div className="mb-32 mt-32 grid h-[360px] w-full grid-cols-4 items-center justify-center justify-items-center gap-2 border-2 border-solid border-smBorderColor p-4 shadow-md">
         <Card />
         <p>
-          노란색에 향수 이미지, 흰색에 글씨가 들어갈 예정 <br />
+          흰색에 향수 이미지, 주황색에 글씨가 들어갈 예정 <br />
           카드에 들어갈 향수 데이터 추가하면, 카드 추가 예정
         </p>
       </div>
