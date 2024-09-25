@@ -18,10 +18,10 @@ const header = () => {
           </div>
         </Link>
         <div className="flex items-center justify-center gap-6">
-          <Link href="/login">
+          <Link href="/sign-in">
             <div>로그인</div>
           </Link>
-          <Link href="/signin">
+          <Link href="/sign-up">
             <div>회원가입</div>
           </Link>
         </div>
