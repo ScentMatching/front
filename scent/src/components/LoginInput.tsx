@@ -1,51 +1,50 @@
-import { useState } from "react";
-
-interface LoginInputReturnType {
-  values: {
-    email: string;
-    nickname: string;
-    password: string;
-    passwordConfirm: string;
-  };
-  errors: {
-    email?: string;
-    nickname?: string;
-    password?: string;
-    passwordConfirm?: string;
-  };
-  isLoading: boolean;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: React.SyntheticEvent) => void;
+import React, { forwardRef } from "react";
+interface InputProps {
+  label: string;
+  placeholder: string;
+  name: string;
+  type: "email" | "password" | "text";
+  isError?: boolean;
+  errorMessage?: string;
+  disabled?: boolean;
 }
 
-const LoginInput = ({
-  initialValues,
-  onSubmit,
-  validate,
-}: any): LoginInputReturnType => {
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+const LoginInput = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      label,
+      placeholder,
+      name,
+      type,
+      isError,
+      errorMessage,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <div className="w-full">
+        <label className="block text-base font-normal" htmlFor={name}>
+          {label}
+        </label>
+        <input
+          className={`mt-2 block h-14 w-full border px-3 py-2 ${isError ? "border-red-500" : "border-gray-300"} disabled:text-gnGray500 rounded-md shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+          placeholder={placeholder}
+          type={type}
+          name={name}
+          ref={ref}
+          {...props}
+          disabled={disabled}
+        />
+        {isError && (
+          <div className="mt-1 text-sm text-red-500">{errorMessage}</div>
+        )}
+      </div>
+    );
+  },
+);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
-  };
-
-  const handleSubmit = async (event: React.SyntheticEvent) => {
-    setIsLoading(true);
-    event.preventDefault();
-    await new Promise((r) => setTimeout(r, 1000));
-    setErrors(validate(values));
-  };
-
-  return {
-    values,
-    errors,
-    isLoading,
-    handleChange,
-    handleSubmit,
-  };
-};
+LoginInput.displayName = "LoginInput";
 
 export default LoginInput;
