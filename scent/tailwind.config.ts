@@ -16,6 +16,8 @@ const config: Config = {
         smColor: "#F6F6DB",
         smBorderColor: "#d3d396",
         smButtonColor: "#F3DAB3",
+        smResultCardColor: "#EFEBD8",
+        smResultCardBorderColor: "#C4BBA4",
       },
       fontFamily: {
         sans: ["Pretendard", "ui-sans-serif", "system-ui"],

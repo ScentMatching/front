@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { questions } from "@/constants/question";
-import { answers } from "@/constants/Answers";
+import { answers } from "@/constants/answers";
+import { fragranceRecommendations } from "@/constants/fragrances";
 
 const Index = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -69,13 +70,17 @@ const Index = () => {
     }
   }, [selectedAnswers]);
 
+  // 결과가 나온 후 향수 추천 데이터 불러오기
+  const mbtiResult = getResult();
+  const fragrance = fragranceRecommendations[mbtiResult];
+
   return (
     <div className="">
       <Header />
       <div className="mt-32 flex w-full flex-col items-center text-center">
         {!showResults ? (
           <>
-            <div className="z-10 h-[320px] w-[1000px] content-center rounded-lg border-2 border-solid border-smBorderColor bg-smColor p-8 text-3xl font-bold shadow-xl">
+            <div className="z-10 mb-8 h-[320px] w-[1000px] content-center rounded-lg border-2 border-solid border-smBorderColor bg-smColor p-8 text-3xl font-bold shadow-xl">
               {questions[currentQuestionIndex]}
             </div>
             <div className="flex w-full justify-between gap-28 p-20">
@@ -98,9 +103,49 @@ const Index = () => {
             </div>
           </>
         ) : (
-          <div className="m-32 w-[700px] content-center rounded-lg border-2 border-solid border-smBorderColor bg-smColor p-8 text-2xl shadow-xl">
+          <div className="mb-32 w-[700px] content-center rounded-lg border-2 border-solid border-smBorderColor bg-smColor p-8 text-2xl shadow-xl">
             <h2 className="text-3xl font-bold">답변 결과</h2>
-            <div className="text-4xl">{getResult()}</div>
+            <div className="mb-6 text-4xl">{mbtiResult}</div>
+            <div className="text-left">
+              <h3 className="mb-4 text-2xl font-semibold">{fragrance.type}</h3>
+              <p className="mb-4 text-xl font-medium">
+                {fragrance.description}
+              </p>
+
+              {/* 남성용 향수 추천 */}
+              <div className="mb-4 flex flex-col items-center gap-3 rounded-lg border-2 border-solid border-smResultCardBorderColor bg-smResultCardColor p-4 shadow-md">
+                <h4 className="mb-2 text-xl font-semibold">남성 추천 향수</h4>
+                <p className="text-center">
+                  <strong>{fragrance.male.name}</strong>
+                </p>
+                <img
+                  src={fragrance.male.image}
+                  alt={fragrance.male.name}
+                  className="h-[200px] w-[200px] rounded-lg border-8 border-solid border-white"
+                />
+                <p className="text-base">{fragrance.male.reason}</p>
+                <p className="text-sm text-gray-600">
+                  향 특징: {fragrance.male.notes}
+                </p>
+              </div>
+
+              {/* 여성용 향수 추천 */}
+              <div className="flex flex-col items-center gap-3 rounded-lg border-2 border-solid border-smResultCardBorderColor bg-smResultCardColor p-4 shadow-md">
+                <h4 className="mb-2 text-xl font-semibold">여성 추천 향수</h4>
+                <p className="text-center">
+                  <strong>{fragrance.female.name}</strong>
+                </p>
+                <img
+                  src={fragrance.female.image}
+                  alt={fragrance.female.name}
+                  className="h-[200px] w-[200px] rounded-lg border-8 border-solid border-white"
+                />
+                <p className="text-base">{fragrance.female.reason}</p>
+                <p className="text-sm text-gray-600">
+                  향 특징: {fragrance.female.notes}
+                </p>
+              </div>
+            </div>
           </div>
         )}
       </div>
